@@ -14,27 +14,32 @@
 import requests
 from bs4 import BeautifulSoup 
 
-def part_Three():
+def Beautiful_Soup():
 
-	base_url = 'https://www.si.umich.edu/programs/bachelor-science-information/bsi-admissions'
+	base_url = 'http://collemc.people.si.umich.edu/data/bshw3StarterFile.html'
 	rqt = requests.get(base_url)
 	soup = BeautifulSoup(rqt.text, 'lxml')
 	
-	#bsi_admission = soup.find_all('class_="ytp-thumbnail-overlay-image")
-
-	bsi_admission = soup.find_all('div')
+	soup = BeautifulSoup(
+		str(soup.prettify()).replace(" student ", " AMAZING student ") #replacing student with Amazing Student 
+		, 'lxml'
+		)
 
 	
-	print('-'*72)
-	print(type(bsi_admission))
-	print(dir(bsi_admission))
+#-----------------------------------------------------
+	
+	#2 and #3
+	for img in soup.find_all("img"):
+		#print('-'*72)
+		if img.get('src').find("bsi_exposition_041316_192.jpg") >= 0: #replacing main image
+			#print(img.get('src'))
+			img['src'] = "./img/me.jpg"
+		else:
+			img['src'] = "./img/logo.png" #replacing local image
 
-	for div in soup.find_all("div"):
-		classes = 
-		print(div.get("class"))
-		for c in div.get("class"):
-			print(c)
+	print(soup.prettify())
 
+#------------------------------------------------------------------------
 
 
 '''
@@ -50,7 +55,8 @@ soup = BeautifulSoup(str(bsi_admission), 'lxml')  #sending it to be broken into 
 
 
 
+
 #-------------
 #main
 #---------------
-part_Three()
+Beautiful_Soup()
