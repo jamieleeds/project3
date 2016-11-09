@@ -9,7 +9,7 @@ from textblob import TextBlob
 
 import tweepy
 
-search_term = "Election"
+search_term = "Donald Trump"
 
 # Unique code from Twitter
 access_token = "167086627-yiwlT0HMMj8lH2LVqY3A5vQKNjaIaoCK8Ev0rRi0"
